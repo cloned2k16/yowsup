@@ -1,9 +1,11 @@
-from yowsup.stacks import  YowStackBuilder
-from .layer import YowsupCliLayer
-from yowsup.layers.auth import AuthError
-from yowsup.layers import YowLayerEvent
-from yowsup.layers.axolotl.props import PROP_IDENTITY_AUTOTRUST
-import sys
+import  os,sys
+
+from    yowsup  .stacks                 import  YowStackBuilder
+from            .layer                  import  YowsupCliLayer
+from    yowsup  .layers.auth            import  AuthError
+from    yowsup  .layers                 import  YowLayerEvent
+from    yowsup  .layers.axolotl.props   import  PROP_IDENTITY_AUTOTRUST
+
 
 class YowsupCliStack(object):
     def __init__(self, credentials, encryptionEnabled = True):
@@ -28,4 +30,8 @@ class YowsupCliStack(object):
             print("Auth Error, reason %s" % e)
         except KeyboardInterrupt:
             print("\nYowsdown")
+            #   WORKAROUND !
+            #   BUG: after exit by pressing Ctrl+C , it doesn't show what you type anymore ...
+            os.system('reset')
+            ####
             sys.exit(0)
